@@ -17,6 +17,7 @@
 		0825D8E82BDE9BED00F6EFB8 /* Exo2-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0825D8E72BDE9BED00F6EFB8 /* Exo2-ExtraLight.ttf */; };
 		0825D8EB2BDE9BF900F6EFB8 /* Exo2-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0825D8E92BDE9BF900F6EFB8 /* Exo2-Medium.ttf */; };
 		0825D8EC2BDE9BF900F6EFB8 /* Exo2-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0825D8EA2BDE9BF900F6EFB8 /* Exo2-Light.ttf */; };
+		08FF47CF2BDEA5E700B6DBFB /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF47CE2BDEA5E700B6DBFB /* ChatVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		0825D8E72BDE9BED00F6EFB8 /* Exo2-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-ExtraLight.ttf"; sourceTree = "<group>"; };
 		0825D8E92BDE9BF900F6EFB8 /* Exo2-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Medium.ttf"; sourceTree = "<group>"; };
 		0825D8EA2BDE9BF900F6EFB8 /* Exo2-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Light.ttf"; sourceTree = "<group>"; };
+		08FF47CE2BDEA5E700B6DBFB /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				0825D8D12BDE94FA00F6EFB8 /* ViewController.swift */,
+				08FF47CE2BDEA5E700B6DBFB /* ChatVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				0825D8D22BDE94FA00F6EFB8 /* ViewController.swift in Sources */,
 				0825D8CE2BDE94FA00F6EFB8 /* AppDelegate.swift in Sources */,
 				0825D8D02BDE94FA00F6EFB8 /* SceneDelegate.swift in Sources */,
+				08FF47CF2BDEA5E700B6DBFB /* ChatVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

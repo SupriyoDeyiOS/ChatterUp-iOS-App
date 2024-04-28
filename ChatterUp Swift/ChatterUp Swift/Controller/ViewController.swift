@@ -21,6 +21,16 @@ class ViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
+    @IBAction func joinBtnAction(_ sender: UIButton) {
+        if let chatVc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as? ChatVC {
+            self.navigationController?.pushViewController(chatVc, animated: true)
+        }
+    }
+    
+}
+
+//MARK: - user defined methods
+extension ViewController {
     func initialUISetup() {
         vwTxtContainer.layer.cornerRadius = 10
         vwNameFormContainer.layer.shadowOpacity = 0.25
@@ -35,4 +45,3 @@ class ViewController: UIViewController {
         btnJoin.layer.cornerRadius = 10
     }
 }
-

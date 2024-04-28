@@ -23,7 +23,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ChatterUp_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="ChatterUp_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,6 +73,9 @@
                                             <color key="titleColor" name="AppGreenThree(007212)"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="medium"/>
                                         </state>
+                                        <connections>
+                                            <action selector="joinBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rsb-6O-ULh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" name="AppGreenTwo(DFE8D3)"/>
@@ -113,6 +116,65 @@
             </objects>
             <point key="canvasLocation" x="1066.4122137404579" y="-2.1126760563380285"/>
         </scene>
+        <!--ChatVC-->
+        <scene sceneID="Qka-yT-dMz">
+            <objects>
+                <viewController storyboardIdentifier="ChatVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C6m-Vb-Ess" customClass="ChatVC" customModule="ChatterUp_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hba-dU-bwQ">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4JA-Q3-uPu">
+                                <rect key="frame" x="12" y="71" width="406" height="90"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncL-89-w03">
+                                        <rect key="frame" x="12" y="25" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="5ph-i7-Mvb"/>
+                                            <constraint firstAttribute="width" constant="40" id="WoI-Ta-597"/>
+                                        </constraints>
+                                        <color key="tintColor" name="AppGreenThree(007212)"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="chevron.left" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" weight="light"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backBtnAction:" destination="C6m-Vb-Ess" eventType="touchUpInside" id="ABI-eK-SQf"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChatterUp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n5-Ed-pBI">
+                                        <rect key="frame" x="134.66666666666666" y="27" width="136.99999999999997" height="36"/>
+                                        <fontDescription key="fontDescription" name="Exo2-ExtraLight" family="Exo 2" pointSize="30"/>
+                                        <color key="textColor" name="AppGreenThree(007212)"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="AppGreenOne(ADD396)"/>
+                                <constraints>
+                                    <constraint firstItem="2n5-Ed-pBI" firstAttribute="centerY" secondItem="4JA-Q3-uPu" secondAttribute="centerY" id="RS0-xg-4km"/>
+                                    <constraint firstItem="ncL-89-w03" firstAttribute="centerY" secondItem="4JA-Q3-uPu" secondAttribute="centerY" id="Xbo-CE-bg0"/>
+                                    <constraint firstItem="2n5-Ed-pBI" firstAttribute="centerX" secondItem="4JA-Q3-uPu" secondAttribute="centerX" id="d3O-Kf-Rg9"/>
+                                    <constraint firstItem="ncL-89-w03" firstAttribute="leading" secondItem="4JA-Q3-uPu" secondAttribute="leading" constant="12" id="mFF-IQ-33l"/>
+                                    <constraint firstAttribute="height" constant="90" id="n9c-X1-8EW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jP4-6M-c72"/>
+                        <color key="backgroundColor" name="AppGreenTwo(DFE8D3)"/>
+                        <constraints>
+                            <constraint firstItem="4JA-Q3-uPu" firstAttribute="top" secondItem="jP4-6M-c72" secondAttribute="top" constant="12" id="BHE-jr-80R"/>
+                            <constraint firstItem="4JA-Q3-uPu" firstAttribute="leading" secondItem="jP4-6M-c72" secondAttribute="leading" constant="12" id="KqP-1B-ygW"/>
+                            <constraint firstItem="jP4-6M-c72" firstAttribute="trailing" secondItem="4JA-Q3-uPu" secondAttribute="trailing" constant="12" id="mtM-bT-iB7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="vwNavContainer" destination="4JA-Q3-uPu" id="8uF-Lb-qgH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jNU-cm-sr0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1844.6511627906978" y="-3.218884120171674"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="7z3-En-mT2">
             <objects>
@@ -134,6 +196,7 @@
     </scenes>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <namedColor name="AppGreenOne(ADD396)">
             <color red="0.67843137254901964" green="0.82745098039215681" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
