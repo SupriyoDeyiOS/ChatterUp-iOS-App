@@ -7,6 +7,13 @@ ChatterUp iOS App is a demo project showcasing a sleek and intuitive chat applic
 - `Node.js Backend:` The backend is powered by Node.js, ensuring robust and reliable performance.
 - `Socket.IO Integration:` Utilizes Socket.IO for seamless and efficient communication between users.
 
+## How to Run the Server
+1. Make sure you have Node.js installed on your machine.
+
+3. Start the server:
+    ```bash
+    node index.js
+    ```
 
 ## Design:
 [`Design URL`](https://www.figma.com/file/EGERSkV5mW0WkEUvDCoym3/ChatterUp?type=design&node-id=0%3A1&mode=design&t=oJFD2FQ9SkTublqw-1)

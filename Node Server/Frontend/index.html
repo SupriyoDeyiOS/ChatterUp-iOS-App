@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatterUp</title>
+</head>
+
+<body>
+    <h1>Welcome to ChatterUp</h1>
+    <input type="text" placeholder="Enter message." id="input_message">
+    <button id="btn_send">Send</button>
+    <ul id="messages">
+        <!-- Chat messages will be appended here dynamically -->
+    </ul>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        const btnSend = document.getElementById('btn_send');
+        const inputMsg = document.getElementById('input_message');
+
+        btnSend.addEventListener('click', function (e) {
+            socket.emit('ChatterUp-message', inputMsg.value);
+            inputMsg.value = '';
+        });
+
+        socket.on('ChatterUp-message', function (msg) {
+            var item = document.createElement('li');
+            item.textContent = msg;
+            messages.appendChild(item);
+            //window.scrollTo(0, document.body.scrollHeight);
+        });
+
+    </script>
+</body>
+
+</html>
