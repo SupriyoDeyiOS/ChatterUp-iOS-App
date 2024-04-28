@@ -14,6 +14,9 @@
 		0825D8D82BDE94FA00F6EFB8 /* ChatterUp_Swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0825D8D62BDE94FA00F6EFB8 /* ChatterUp_Swift.xcdatamodeld */; };
 		0825D8DA2BDE94FB00F6EFB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0825D8D92BDE94FB00F6EFB8 /* Assets.xcassets */; };
 		0825D8DD2BDE94FB00F6EFB8 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0825D8DC2BDE94FB00F6EFB8 /* Base */; };
+		0825D8E82BDE9BED00F6EFB8 /* Exo2-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0825D8E72BDE9BED00F6EFB8 /* Exo2-ExtraLight.ttf */; };
+		0825D8EB2BDE9BF900F6EFB8 /* Exo2-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0825D8E92BDE9BF900F6EFB8 /* Exo2-Medium.ttf */; };
+		0825D8EC2BDE9BF900F6EFB8 /* Exo2-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0825D8EA2BDE9BF900F6EFB8 /* Exo2-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		0825D8D92BDE94FB00F6EFB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0825D8DC2BDE94FB00F6EFB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0825D8DE2BDE94FB00F6EFB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0825D8E72BDE9BED00F6EFB8 /* Exo2-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-ExtraLight.ttf"; sourceTree = "<group>"; };
+		0825D8E92BDE9BF900F6EFB8 /* Exo2-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Medium.ttf"; sourceTree = "<group>"; };
+		0825D8EA2BDE9BF900F6EFB8 /* Exo2-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +66,41 @@
 			children = (
 				0825D8CD2BDE94FA00F6EFB8 /* AppDelegate.swift */,
 				0825D8CF2BDE94FA00F6EFB8 /* SceneDelegate.swift */,
-				0825D8D12BDE94FA00F6EFB8 /* ViewController.swift */,
-				0825D8D32BDE94FA00F6EFB8 /* Main.storyboard */,
+				0825D8E42BDE9B6F00F6EFB8 /* View */,
+				0825D8E52BDE9B7B00F6EFB8 /* Controller */,
+				0825D8E62BDE9B9100F6EFB8 /* Fonts */,
 				0825D8D92BDE94FB00F6EFB8 /* Assets.xcassets */,
 				0825D8DB2BDE94FB00F6EFB8 /* LaunchScreen.storyboard */,
 				0825D8DE2BDE94FB00F6EFB8 /* Info.plist */,
 				0825D8D62BDE94FA00F6EFB8 /* ChatterUp_Swift.xcdatamodeld */,
 			);
 			path = "ChatterUp Swift";
+			sourceTree = "<group>";
+		};
+		0825D8E42BDE9B6F00F6EFB8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0825D8D32BDE94FA00F6EFB8 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0825D8E52BDE9B7B00F6EFB8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0825D8D12BDE94FA00F6EFB8 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0825D8E62BDE9B9100F6EFB8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0825D8EA2BDE9BF900F6EFB8 /* Exo2-Light.ttf */,
+				0825D8E92BDE9BF900F6EFB8 /* Exo2-Medium.ttf */,
+				0825D8E72BDE9BED00F6EFB8 /* Exo2-ExtraLight.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,7 +163,10 @@
 			files = (
 				0825D8DA2BDE94FB00F6EFB8 /* Assets.xcassets in Resources */,
 				0825D8DD2BDE94FB00F6EFB8 /* Base in Resources */,
+				0825D8E82BDE9BED00F6EFB8 /* Exo2-ExtraLight.ttf in Resources */,
+				0825D8EB2BDE9BF900F6EFB8 /* Exo2-Medium.ttf in Resources */,
 				0825D8D52BDE94FA00F6EFB8 /* Base in Resources */,
+				0825D8EC2BDE9BF900F6EFB8 /* Exo2-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +335,7 @@
 				DEVELOPMENT_TEAM = W334U9L5NX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ChatterUp Swift/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = ChatterUp;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -328,6 +365,7 @@
 				DEVELOPMENT_TEAM = W334U9L5NX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ChatterUp Swift/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = ChatterUp;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
