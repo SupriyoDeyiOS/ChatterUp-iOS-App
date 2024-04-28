@@ -13,6 +13,7 @@ class ChatVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialUISetup()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,5 +30,12 @@ class ChatVC: UIViewController {
 extension ChatVC {
     func initialUISetup() {
         vwNavContainer.layer.cornerRadius = 20
+    }
+}
+
+//MARK: - handling interactivePopGestureRecognizer - back gesture
+extension ChatVC: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
