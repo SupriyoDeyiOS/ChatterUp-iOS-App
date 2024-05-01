@@ -1,18 +1,18 @@
 # ChatterUp-iOS-App
-ChatterUp iOS App is a demo project showcasing a sleek and intuitive chat application for iOS devices. Dive into the world of instant messaging with ChatterUp!
+ChatterUp iOS App is a demo project showcasing a sleek and intuitive chat application for iOS devices.
 
 ## Features:
 - `Sleek Interface:` User-friendly chat interface designed for iOS.
 - `Real-time Messaging:` Seamless communication with real-time messaging functionality.
 - `Node.js Backend:` The backend is powered by Node.js, ensuring robust and reliable performance.
-- `Socket.IO Integration:` Utilizes Socket.IO for seamless and efficient communication between users.
+- `WebSocket Integration:` Utilizes WebSocket for seamless and efficient communication between users.
 
-## How to Run the Server
+## How to Run the Server:
 1. Make sure you have Node.js installed on your machine.
 
-3. Start the server:
+2. Start the server:
     ```bash
-    node index.js
+    node Node\ Server/server.js
     ```
 
 ## Design:
