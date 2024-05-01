@@ -13,6 +13,10 @@ class ChatVC: UIViewController {
     @IBOutlet weak var vwTxtMsgContainer: UIView!
     @IBOutlet weak var constBottom: NSLayoutConstraint!
     
+    private var webServerLiveUrl = "wss://techknowgraphy-chatterup.onrender.com/"
+    private var webServiceLocalUrl = "ws://localhost:8080/"
+    var webSocketTask: URLSessionWebSocketTask!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialUISetup()
@@ -26,8 +30,12 @@ class ChatVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tap.cancelsTouchesInView = false
         tblMessages.addGestureRecognizer(tap)
+        connectWebSocket()
+        
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        disconnectWebSocket()
+    }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -49,6 +57,46 @@ extension ChatVC {
         
         vwTxtMsgContainer.layer.borderColor = UIColor.appGrayAEAEAE.cgColor
         vwTxtMsgContainer.layer.borderWidth = 0.8
+    }
+    
+    func connectWebSocket() {
+        let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+        webSocketTask = session.webSocketTask(with: URL(string: webServiceLocalUrl)!)
+        webSocketTask.resume()
+        
+        receiveMessage()
+    }
+    
+    func disconnectWebSocket() {
+        webSocketTask.cancel(with: .normalClosure, reason: nil)
+    }
+    
+    func sendMessage(message: String) {
+        let message = URLSessionWebSocketTask.Message.string(message)
+        webSocketTask.send(message) { error in
+            if let error = error {
+                print("WebSocket couldn't send message because: \(error)")
+            }
+        }
+    }
+    
+    func receiveMessage() {
+        webSocketTask.receive { result in
+            switch result {
+            case .success(let message):
+                switch message {
+                case .string(let text):
+                    print("Received message: \(text)")
+                case .data(let data):
+                    print("Received data: \(data)")
+                @unknown default:
+                    print("Received unknown message")
+                }
+                self.receiveMessage() // Continue listening for messages
+            case .failure(let error):
+                print("WebSocket couldn't receive message because: \(error)")
+            }
+        }
     }
     
     @objc func hideKeyboard() {
@@ -75,6 +123,17 @@ extension ChatVC {
         }
     }
 
+}
+
+//MARK: - websocket delegates
+extension ChatVC: URLSessionWebSocketDelegate {
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
+        print("WebSocket did open with protocol: \(`protocol` ?? "No protocol")")
+    }
+    
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
+        print("WebSocket did close with code: \(closeCode)")
+    }
 }
 
 //MARK: - Table view delegate and datasource

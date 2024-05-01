@@ -56,6 +56,7 @@
 			children = (
 				0825D8CC2BDE94FA00F6EFB8 /* ChatterUp Swift */,
 				0825D8CB2BDE94FA00F6EFB8 /* Products */,
+				08D4C67C2BE275220049CF82 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +113,13 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		08D4C67C2BE275220049CF82 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,6 +136,8 @@
 			dependencies = (
 			);
 			name = "ChatterUp Swift";
+			packageProductDependencies = (
+			);
 			productName = "ChatterUp Swift";
 			productReference = 0825D8CA2BDE94FA00F6EFB8 /* ChatterUp Swift.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +166,8 @@
 				Base,
 			);
 			mainGroup = 0825D8C12BDE94FA00F6EFB8;
+			packageReferences = (
+			);
 			productRefGroup = 0825D8CB2BDE94FA00F6EFB8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
