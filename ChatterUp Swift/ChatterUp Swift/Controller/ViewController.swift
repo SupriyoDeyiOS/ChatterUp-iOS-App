@@ -33,13 +33,13 @@ class ViewController: UIViewController {
 extension ViewController {
     func initialUISetup() {
         vwTxtContainer.layer.cornerRadius = 10
-        vwNameFormContainer.layer.shadowOpacity = 0.25
+        vwNameFormContainer.layer.shadowOpacity = 0.2
         vwNameFormContainer.layer.shadowRadius = 5
         vwNameFormContainer.layer.shadowColor = UIColor.black.cgColor
         vwNameFormContainer.layer.shadowOffset = CGSize(width: 0, height: 2)
         
         vwTxtContainer.layer.borderColor = UIColor.appGrayAEAEAE.cgColor
-        vwTxtContainer.layer.borderWidth = 1
+        vwTxtContainer.layer.borderWidth = 0.8
         vwTxtContainer.layer.cornerRadius = 10
         
         btnJoin.layer.cornerRadius = 10

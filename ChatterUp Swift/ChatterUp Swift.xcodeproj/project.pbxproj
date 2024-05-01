@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		081A8D462BE2186000DDC145 /* IncomingMsgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081A8D452BE2186000DDC145 /* IncomingMsgCell.swift */; };
+		081A8D482BE2187200DDC145 /* outgoingMsgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081A8D472BE2187200DDC145 /* outgoingMsgCell.swift */; };
 		0825D8CE2BDE94FA00F6EFB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D8CD2BDE94FA00F6EFB8 /* AppDelegate.swift */; };
 		0825D8D02BDE94FA00F6EFB8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D8CF2BDE94FA00F6EFB8 /* SceneDelegate.swift */; };
 		0825D8D22BDE94FA00F6EFB8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D8D12BDE94FA00F6EFB8 /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		081A8D452BE2186000DDC145 /* IncomingMsgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMsgCell.swift; sourceTree = "<group>"; };
+		081A8D472BE2187200DDC145 /* outgoingMsgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = outgoingMsgCell.swift; sourceTree = "<group>"; };
 		0825D8CA2BDE94FA00F6EFB8 /* ChatterUp Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChatterUp Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0825D8CD2BDE94FA00F6EFB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0825D8CF2BDE94FA00F6EFB8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +96,8 @@
 			children = (
 				0825D8D12BDE94FA00F6EFB8 /* ViewController.swift */,
 				08FF47CE2BDEA5E700B6DBFB /* ChatVC.swift */,
+				081A8D452BE2186000DDC145 /* IncomingMsgCell.swift */,
+				081A8D472BE2187200DDC145 /* outgoingMsgCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,6 +191,8 @@
 				0825D8CE2BDE94FA00F6EFB8 /* AppDelegate.swift in Sources */,
 				0825D8D02BDE94FA00F6EFB8 /* SceneDelegate.swift in Sources */,
 				08FF47CF2BDEA5E700B6DBFB /* ChatVC.swift in Sources */,
+				081A8D482BE2187200DDC145 /* outgoingMsgCell.swift in Sources */,
+				081A8D462BE2186000DDC145 /* IncomingMsgCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
