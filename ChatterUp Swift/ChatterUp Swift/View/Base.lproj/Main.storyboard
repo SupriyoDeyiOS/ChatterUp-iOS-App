@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -250,7 +251,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VZz-LZ-whv">
-                                <rect key="frame" x="0.0" y="126" width="430" height="722"/>
+                                <rect key="frame" x="0.0" y="126" width="430" height="652"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMsgCell" rowHeight="138" id="fIF-8T-ZOv" customClass="IncomingMsgCell" customModule="ChatterUp_Swift" customModuleProvider="target">
@@ -417,22 +418,73 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sa1-xB-LMi">
-                                <rect key="frame" x="10" y="853" width="410" height="40"/>
+                                <rect key="frame" x="10" y="783" width="410" height="110"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fu-4g-ERU">
-                                        <rect key="frame" x="6" y="0.0" width="24" height="40"/>
-                                        <color key="tintColor" name="AppGreenThree(007212)"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="add_a_photo"/>
-                                        <connections>
-                                            <action selector="pickImgBtnAction:" destination="C6m-Vb-Ess" eventType="touchUpInside" id="grO-Ah-OIg"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZx-ac-6Ef">
+                                        <rect key="frame" x="6" y="0.0" width="124" height="110"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fu-4g-ERU">
+                                                <rect key="frame" x="0.0" y="0.0" width="24" height="110"/>
+                                                <color key="tintColor" name="AppGreenThree(007212)"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="add_a_photo"/>
+                                                <connections>
+                                                    <action selector="pickImgBtnAction:" destination="C6m-Vb-Ess" eventType="touchUpInside" id="grO-Ah-OIg"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v4Q-G5-cFr">
+                                                <rect key="frame" x="24" y="0.0" width="100" height="110"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYb-f6-f1C">
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="110"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Lq-08-2Xk">
+                                                                <rect key="frame" x="0.0" y="5" width="100" height="100"/>
+                                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="100" id="gQC-yo-Es2"/>
+                                                                    <constraint firstAttribute="height" constant="100" id="mYu-0v-dgX"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKL-dM-gPb">
+                                                                <rect key="frame" x="76" y="7" width="22" height="22"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="22" id="Vsd-xt-W33"/>
+                                                                    <constraint firstAttribute="height" constant="22" id="r7a-Wk-DkO"/>
+                                                                </constraints>
+                                                                <color key="tintColor" name="AppGreenThree(007212)"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" image="xmark.circle.fill" catalog="system"/>
+                                                                <connections>
+                                                                    <action selector="removePickedImgBtnAction:" destination="C6m-Vb-Ess" eventType="touchUpInside" id="Pb8-X7-R3g"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="9Lq-08-2Xk" firstAttribute="top" secondItem="yYb-f6-f1C" secondAttribute="top" constant="5" id="9V2-Mj-yva"/>
+                                                            <constraint firstItem="FKL-dM-gPb" firstAttribute="top" secondItem="yYb-f6-f1C" secondAttribute="top" constant="7" id="A6k-lm-9Mb"/>
+                                                            <constraint firstAttribute="bottom" secondItem="9Lq-08-2Xk" secondAttribute="bottom" constant="5" id="LK3-xn-ZVk"/>
+                                                            <constraint firstAttribute="trailing" secondItem="9Lq-08-2Xk" secondAttribute="trailing" id="dMU-XZ-dSB"/>
+                                                            <constraint firstAttribute="trailing" secondItem="FKL-dM-gPb" secondAttribute="trailing" constant="2" id="mCI-bl-QjZ"/>
+                                                            <constraint firstItem="9Lq-08-2Xk" firstAttribute="leading" secondItem="yYb-f6-f1C" secondAttribute="leading" id="x3t-4E-IWH"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqn-lY-6Ca">
-                                        <rect key="frame" x="374" y="5" width="30" height="30"/>
+                                        <rect key="frame" x="374" y="75" width="30" height="30"/>
                                         <color key="backgroundColor" name="AppGreenTwo(DFE8D3)"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="mqn-lY-6Ca" secondAttribute="height" multiplier="1:1" id="2Aa-ai-Kfn"/>
+                                            <constraint firstAttribute="height" constant="30" id="fWs-mO-1Xh"/>
+                                            <constraint firstAttribute="width" constant="30" id="ni7-dq-FQN"/>
                                         </constraints>
                                         <color key="tintColor" name="AppGreenThree(007212)"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -449,7 +501,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I0i-jJ-kIf">
-                                        <rect key="frame" x="35" y="0.0" width="334" height="40"/>
+                                        <rect key="frame" x="135" y="0.0" width="234" height="110"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Exo2-Light" family="Exo 2" pointSize="18"/>
@@ -458,17 +510,17 @@
                                 </subviews>
                                 <color key="backgroundColor" name="AppWhite(F6F6F6)"/>
                                 <constraints>
-                                    <constraint firstItem="4fu-4g-ERU" firstAttribute="top" secondItem="Sa1-xB-LMi" secondAttribute="top" id="8sX-vS-kPB"/>
                                     <constraint firstAttribute="trailing" secondItem="mqn-lY-6Ca" secondAttribute="trailing" constant="6" id="A1o-Po-LDe"/>
                                     <constraint firstAttribute="bottom" secondItem="I0i-jJ-kIf" secondAttribute="bottom" id="F70-i4-yEF"/>
-                                    <constraint firstItem="4fu-4g-ERU" firstAttribute="leading" secondItem="Sa1-xB-LMi" secondAttribute="leading" constant="6" id="MY6-EV-9pP"/>
+                                    <constraint firstItem="I0i-jJ-kIf" firstAttribute="leading" secondItem="nZx-ac-6Ef" secondAttribute="trailing" constant="5" id="XIN-HF-062"/>
                                     <constraint firstItem="mqn-lY-6Ca" firstAttribute="leading" secondItem="I0i-jJ-kIf" secondAttribute="trailing" constant="5" id="Ybk-Y0-2gO"/>
                                     <constraint firstItem="I0i-jJ-kIf" firstAttribute="top" secondItem="Sa1-xB-LMi" secondAttribute="top" id="aSH-en-wdO"/>
-                                    <constraint firstAttribute="height" constant="40" id="bOU-lk-rBb"/>
-                                    <constraint firstItem="I0i-jJ-kIf" firstAttribute="leading" secondItem="4fu-4g-ERU" secondAttribute="trailing" constant="5" id="dnb-P3-IhB"/>
-                                    <constraint firstItem="mqn-lY-6Ca" firstAttribute="top" secondItem="Sa1-xB-LMi" secondAttribute="top" constant="5" id="j5H-1t-VJR"/>
-                                    <constraint firstAttribute="bottom" secondItem="4fu-4g-ERU" secondAttribute="bottom" id="tnK-CF-Zjw"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="bOU-lk-rBb"/>
+                                    <constraint firstItem="mqn-lY-6Ca" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Sa1-xB-LMi" secondAttribute="top" constant="5" id="j5H-1t-VJR"/>
+                                    <constraint firstItem="nZx-ac-6Ef" firstAttribute="leading" secondItem="Sa1-xB-LMi" secondAttribute="leading" constant="6" id="j8J-zp-N7s"/>
+                                    <constraint firstAttribute="bottom" secondItem="nZx-ac-6Ef" secondAttribute="bottom" id="mYq-F0-G3f"/>
                                     <constraint firstAttribute="bottom" secondItem="mqn-lY-6Ca" secondAttribute="bottom" constant="5" id="vFv-OH-JM8"/>
+                                    <constraint firstItem="nZx-ac-6Ef" firstAttribute="top" secondItem="Sa1-xB-LMi" secondAttribute="top" id="vQU-Ir-gsg"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -493,10 +545,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnCamera" destination="4fu-4g-ERU" id="jSE-ft-CQm"/>
                         <outlet property="constBottom" destination="owM-hp-TEt" id="J6f-te-v8q"/>
+                        <outlet property="imgPickedImage" destination="9Lq-08-2Xk" id="kfH-Zo-jEd"/>
+                        <outlet property="svwPickedImgOuter" destination="v4Q-G5-cFr" id="8NY-ln-r9r"/>
                         <outlet property="tblMessages" destination="VZz-LZ-whv" id="Rer-iL-su6"/>
                         <outlet property="txtMessage" destination="I0i-jJ-kIf" id="2df-Wm-oqY"/>
                         <outlet property="vwNavContainer" destination="4JA-Q3-uPu" id="8uF-Lb-qgH"/>
+                        <outlet property="vwPickedImgInnerContainer" destination="yYb-f6-f1C" id="Dks-lR-VMH"/>
                         <outlet property="vwTxtMsgContainer" destination="Sa1-xB-LMi" id="Vai-t2-d7C"/>
                     </connections>
                 </viewController>
@@ -527,6 +583,7 @@
         <image name="add_a_photo" width="24" height="24"/>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AppGreenFour(B5C4AC)">
             <color red="0.70980392156862748" green="0.7686274509803922" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -545,5 +602,8 @@
         <namedColor name="BubblesColor(127E00)">
             <color red="0.070588235294117646" green="0.49411764705882355" blue="0.0" alpha="0.059999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

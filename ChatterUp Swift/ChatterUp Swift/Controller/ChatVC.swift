@@ -13,6 +13,10 @@ class ChatVC: UIViewController {
     @IBOutlet weak var vwTxtMsgContainer: UIView!
     @IBOutlet weak var constBottom: NSLayoutConstraint!
     @IBOutlet weak var txtMessage: UITextField!
+    @IBOutlet weak var btnCamera: UIButton!
+    @IBOutlet weak var svwPickedImgOuter: UIStackView!
+    @IBOutlet weak var imgPickedImage: UIImageView!
+    @IBOutlet weak var vwPickedImgInnerContainer: UIView!
     
     private var webServerLiveUrl = "wss://techknowgraphy-chatterup.onrender.com/"
     private var webServiceLocalUrl = "ws://localhost:8080/"
@@ -58,7 +62,7 @@ class ChatVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func sendBtnAction(_ sender: UIButton) {
-        if txtMessage.text?.isEmpty == false {
+        if txtMessage.text?.isEmpty == false || pickedImage != nil {
             sendMessage()
         }
     }
@@ -79,12 +83,16 @@ class ChatVC: UIViewController {
         
         present(actionSheet, animated: true, completion: nil)
     }
+    @IBAction func removePickedImgBtnAction(_ sender: UIButton) {
+        resetPickedImg()
+    }
     
 }
 
 //MARK: - users defined methods
 extension ChatVC {
     func initialUISetup() {
+        resetPickedImg()
         vwNavContainer.layer.cornerRadius = 15
         
         vwTxtMsgContainer.layer.borderColor = UIColor.appGrayAEAEAE.cgColor
@@ -99,6 +107,14 @@ extension ChatVC {
         } else {
             print("Selected source type is not available")
         }
+    }
+    
+    func resetPickedImg() {
+        pickedImage = nil
+        vwPickedImgInnerContainer.isHidden = true
+        svwPickedImgOuter.isHidden = true
+        imgPickedImage.image = nil
+        btnCamera.isHidden = false
     }
     
     func connectWebSocket() {
@@ -123,7 +139,7 @@ extension ChatVC {
             let jsonEncoder = JSONEncoder()
             let jsonData = try jsonEncoder.encode(dataToSend)
             
-            self.pickedImage = nil
+            resetPickedImg()
             self.txtMessage.text = ""
             self.messages.append(dataToSend.data!)
             self.tblMessages.reloadData()
@@ -307,6 +323,11 @@ extension ChatVC: UIImagePickerControllerDelegate, UINavigationControllerDelegat
             // imageView.image = pickedImage
             print("point 3.0 --> ", pickedImage)
             self.pickedImage = pickedImage
+            self.svwPickedImgOuter.isHidden = false
+            self.imgPickedImage.image = pickedImage
+            self.vwPickedImgInnerContainer.isHidden = false
+            self.btnCamera.isHidden = true
+
         }
         
         dismiss(animated: true, completion: nil)
