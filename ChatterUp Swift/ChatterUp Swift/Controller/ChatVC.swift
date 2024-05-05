@@ -19,7 +19,9 @@ class ChatVC: UIViewController {
     
     var userName: String = ""
     var userId: String = ""
-    var webSocketTask: URLSessionWebSocketTask!
+    private var webSocketTask: URLSessionWebSocketTask!
+    private let imagePicker = UIImagePickerController()
+    private var pickedImage: UIImage?
     
     private var messages: [MessageDataModel] = []
     
@@ -29,6 +31,7 @@ class ChatVC: UIViewController {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         tblMessages.delegate = self
         tblMessages.dataSource = self
+        imagePicker.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -37,7 +40,6 @@ class ChatVC: UIViewController {
         tap.cancelsTouchesInView = false
         tblMessages.addGestureRecognizer(tap)
         connectWebSocket()
-        
     }
     override func viewDidDisappear(_ animated: Bool) {
         disconnectWebSocket()
@@ -58,21 +60,49 @@ class ChatVC: UIViewController {
             sendMessage()
         }
     }
+    @IBAction func pickImgBtnAction(_ sender: UIButton) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Choose from Library", style: .default) { _ in
+            self.showImagePicker(sourceType: .photoLibrary)
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Take Photo", style: .default) { _ in
+            self.showImagePicker(sourceType: .camera)
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        actionSheet.popoverPresentationController?.sourceView = sender
+        actionSheet.popoverPresentationController?.sourceRect = sender.bounds
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
     
 }
 
 //MARK: - users defined methods
 extension ChatVC {
     func initialUISetup() {
-        vwNavContainer.layer.cornerRadius = 20
+        vwNavContainer.layer.cornerRadius = 15
         
         vwTxtMsgContainer.layer.borderColor = UIColor.appGrayAEAEAE.cgColor
         vwTxtMsgContainer.layer.borderWidth = 0.8
     }
     
+    func showImagePicker(sourceType: UIImagePickerController.SourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            imagePicker.sourceType = sourceType
+            imagePicker.allowsEditing = false
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            print("Selected source type is not available")
+        }
+    }
+    
     func connectWebSocket() {
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
-        webSocketTask = session.webSocketTask(with: URL(string: webServerLiveUrl)!)
+        webSocketTask = session.webSocketTask(with: URL(string: webServiceLocalUrl)!)
+        webSocketTask.maximumMessageSize = 20 * 1024 * 1024
         webSocketTask.resume()
         
         receiveMessage()
@@ -83,13 +113,14 @@ extension ChatVC {
     }
     
     func sendMessage() {
-        let dataToSend = MessageResponseModel(action: "message", data: MessageDataModel(sender: self.userName, senderId: self.userId, id: UUID().uuidString, message: txtMessage.text ?? "", image: "", deleteId: nil))
+        let dataToSend = MessageResponseModel(action: "message", data: MessageDataModel(sender: self.userName, senderId: self.userId, id: UUID().uuidString, message: txtMessage.text ?? "", image: pickedImage?.jpegData(compressionQuality: 0.5)?.base64EncodedString(), deleteId: nil))
         
         // Encode to JSON
         do {
             let jsonEncoder = JSONEncoder()
             let jsonData = try jsonEncoder.encode(dataToSend)
             
+            self.pickedImage = nil
             self.txtMessage.text = ""
             self.messages.append(dataToSend.data!)
             self.tblMessages.reloadData()
@@ -221,6 +252,11 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
             //outgoing message
             if let cell = tableView.dequeueReusableCell(withIdentifier: "outgoingMsgCell", for: indexPath) as? outgoingMsgCell {
                 cell.lblMessage.text = messages[indexPath.row].message ?? ""
+                if let imageBaseStr = messages[indexPath.row].image, let imgData = Data(base64Encoded: imageBaseStr), let image = UIImage(data: imgData) {
+                    cell.setImage(with: image)
+                } else {
+                    cell.setImage(with: nil)
+                }
                 return cell
             }
         } else {
@@ -228,10 +264,31 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "IncomingMsgCell", for: indexPath) as? IncomingMsgCell {
                 cell.lblMessage.text = messages[indexPath.row].message ?? ""
                 cell.lblSender.text = "~ \(messages[indexPath.row].sender ?? "Unknown")"
+                if let imageBaseStr = messages[indexPath.row].image, let imgData = Data(base64Encoded: imageBaseStr), let image = UIImage(data: imgData) {
+                    cell.setImage(with: image)
+                } else {
+                    cell.setImage(with: nil)
+                }
                 return cell
             }
         }
         return UITableViewCell()
+    }
+}
+
+//MARK: - image picker delegates
+extension ChatVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
+            // imageView.image = pickedImage
+            print("point 3.0 --> ", pickedImage)
+            self.pickedImage = pickedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }
 

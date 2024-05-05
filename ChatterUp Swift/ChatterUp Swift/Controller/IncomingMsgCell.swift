@@ -11,17 +11,41 @@ class IncomingMsgCell: UITableViewCell {
     @IBOutlet weak var vwContainer: UIView!
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblSender: UILabel!
+    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var constImgHeight: NSLayoutConstraint!
+    @IBOutlet weak var constImgWidth: NSLayoutConstraint!
+    @IBOutlet weak var vwImgContainer: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
+        img.layer.cornerRadius = 5
         vwContainer.layer.cornerRadius = 20
         vwContainer.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner]
     }
-
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    func setImage(with image: UIImage?) {
+        if let image = image {
+            vwImgContainer.isHidden = false
+            img.image = image
+            let imageSize = image.size
+            let aspectRatio = imageSize.width / imageSize.height
+            
+            // Calculate the desired width and height for the image view
+            let imageViewWidth = min((bounds.width-130), imageSize.width)
+            let imageViewHeight = imageViewWidth / aspectRatio
+            
+            // Set the constraints of the image view
+            constImgWidth.constant = imageViewWidth
+            constImgHeight.constant = imageViewHeight
+            
+            img.contentMode = .scaleAspectFill
+        } else {
+            img.image = nil
+            vwImgContainer.isHidden = true
+        }
+    }
 }
