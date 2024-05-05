@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func joinBtnAction(_ sender: UIButton) {
+        txtUserName.resignFirstResponder()
         if txtUserName.text?.isEmpty == true {
             showAlert(withMsg: "Please enter your name.")
         } else {

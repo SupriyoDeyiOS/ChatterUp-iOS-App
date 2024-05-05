@@ -16,12 +16,14 @@ class ChatVC: UIViewController {
     
     private var webServerLiveUrl = "wss://techknowgraphy-chatterup.onrender.com/"
     private var webServiceLocalUrl = "ws://localhost:8080/"
+    lazy private var baseUrl = webServerLiveUrl  //change url here
     
     var userName: String = ""
     var userId: String = ""
     private var webSocketTask: URLSessionWebSocketTask!
     private let imagePicker = UIImagePickerController()
     private var pickedImage: UIImage?
+    private var loader: UIView = UIView()
     
     private var messages: [MessageDataModel] = []
     
@@ -100,8 +102,9 @@ extension ChatVC {
     }
     
     func connectWebSocket() {
+        loader = self.addLoader(msg: "Joining...")
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
-        webSocketTask = session.webSocketTask(with: URL(string: webServiceLocalUrl)!)
+        webSocketTask = session.webSocketTask(with: URL(string: baseUrl)!)
         webSocketTask.maximumMessageSize = 20 * 1024 * 1024
         webSocketTask.resume()
         
@@ -234,11 +237,32 @@ extension ChatVC {
 //MARK: - websocket delegates
 extension ChatVC: URLSessionWebSocketDelegate {
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
+        DispatchQueue.main.async {
+            self.removeLoader(loader: self.loader) {}
+        }
         print("WebSocket did open with protocol: \(`protocol` ?? "No protocol")")
     }
     
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
         print("WebSocket did close with code: \(closeCode)")
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: (any Error)?) {
+        DispatchQueue.main.async {
+            self.removeLoader(loader: self.loader) {}
+            self.showAlertWithAction(msg: "Sorry, can't proceed now. Try again later.") {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    func urlSession(_ session: URLSession, didBecomeInvalidWithError error: (any Error)?) {
+        DispatchQueue.main.async {
+            self.removeLoader(loader: self.loader) {}
+            self.showAlertWithAction(msg: "Sorry, can't proceed now. Try again later.") {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
 }
 

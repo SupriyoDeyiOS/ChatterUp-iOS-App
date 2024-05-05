@@ -21,6 +21,7 @@
 		0825D8EC2BDE9BF900F6EFB8 /* Exo2-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0825D8EA2BDE9BF900F6EFB8 /* Exo2-Light.ttf */; };
 		085199752BE7551300BD1F92 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085199742BE7551300BD1F92 /* UIViewController+Alert.swift */; };
 		085199772BE7562300BD1F92 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085199762BE7562300BD1F92 /* MessageModel.swift */; };
+		0899CF312BE7AFA500A1CFDE /* UIViewController+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899CF302BE7AFA500A1CFDE /* UIViewController+Loader.swift */; };
 		08FF47CF2BDEA5E700B6DBFB /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF47CE2BDEA5E700B6DBFB /* ChatVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		0825D8EA2BDE9BF900F6EFB8 /* Exo2-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Light.ttf"; sourceTree = "<group>"; };
 		085199742BE7551300BD1F92 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		085199762BE7562300BD1F92 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		0899CF302BE7AFA500A1CFDE /* UIViewController+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loader.swift"; sourceTree = "<group>"; };
 		08FF47CE2BDEA5E700B6DBFB /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				085199742BE7551300BD1F92 /* UIViewController+Alert.swift */,
+				0899CF302BE7AFA500A1CFDE /* UIViewController+Loader.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				081A8D462BE2186000DDC145 /* IncomingMsgCell.swift in Sources */,
 				085199772BE7562300BD1F92 /* MessageModel.swift in Sources */,
 				085199752BE7551300BD1F92 /* UIViewController+Alert.swift in Sources */,
+				0899CF312BE7AFA500A1CFDE /* UIViewController+Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
