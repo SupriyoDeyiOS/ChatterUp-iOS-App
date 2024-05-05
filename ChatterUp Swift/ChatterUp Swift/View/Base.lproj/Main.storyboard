@@ -108,6 +108,7 @@
                     <navigationItem key="navigationItem" id="bhG-1x-zWG"/>
                     <connections>
                         <outlet property="btnJoin" destination="eTo-Yq-cra" id="wj8-jF-y6P"/>
+                        <outlet property="txtUserName" destination="HRK-6h-2Av" id="wqR-Dk-s4W"/>
                         <outlet property="vwNameFormContainer" destination="Anz-Eg-vkb" id="Go4-Fc-LhX"/>
                         <outlet property="vwTxtContainer" destination="rnf-oP-eR8" id="wWJ-9U-8yB"/>
                     </connections>
@@ -197,6 +198,7 @@
                                                         <constraint firstItem="dd4-qR-TFo" firstAttribute="top" secondItem="L0y-48-OZf" secondAttribute="top" constant="10" id="LDN-yw-5Bf"/>
                                                         <constraint firstAttribute="trailing" secondItem="5xa-cl-kdK" secondAttribute="trailing" constant="10" id="SGM-2l-u7H"/>
                                                         <constraint firstItem="5xa-cl-kdK" firstAttribute="top" secondItem="dd4-qR-TFo" secondAttribute="bottom" constant="6" id="hd7-eL-gRb"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="pFp-QV-43L"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -210,6 +212,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="lblMessage" destination="dd4-qR-TFo" id="zxL-05-CHG"/>
+                                            <outlet property="lblSender" destination="5xa-cl-kdK" id="Ob3-mL-zcq"/>
                                             <outlet property="vwContainer" destination="L0y-48-OZf" id="gIc-O9-ab3"/>
                                         </connections>
                                     </tableViewCell>
@@ -236,6 +240,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="QEh-zY-r5y" secondAttribute="bottom" constant="10" id="dYA-y7-rs1"/>
                                                         <constraint firstItem="QEh-zY-r5y" firstAttribute="leading" secondItem="Fs9-PF-kbT" secondAttribute="leading" constant="10" id="g95-iQ-Ton"/>
                                                         <constraint firstItem="QEh-zY-r5y" firstAttribute="top" secondItem="Fs9-PF-kbT" secondAttribute="top" constant="10" id="gPk-JL-zmE"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="zfd-Sj-GQ4"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -249,6 +254,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="lblMessage" destination="QEh-zY-r5y" id="zMF-F3-8TL"/>
                                             <outlet property="vwContainer" destination="Fs9-PF-kbT" id="XOD-wr-SsS"/>
                                         </connections>
                                     </tableViewCell>
@@ -279,6 +285,9 @@
                                                 <integer key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="sendBtnAction:" destination="C6m-Vb-Ess" eventType="touchUpInside" id="hpF-Kp-tJB"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I0i-jJ-kIf">
                                         <rect key="frame" x="35" y="0.0" width="334" height="40"/>
@@ -327,6 +336,7 @@
                     <connections>
                         <outlet property="constBottom" destination="owM-hp-TEt" id="J6f-te-v8q"/>
                         <outlet property="tblMessages" destination="VZz-LZ-whv" id="Rer-iL-su6"/>
+                        <outlet property="txtMessage" destination="I0i-jJ-kIf" id="2df-Wm-oqY"/>
                         <outlet property="vwNavContainer" destination="4JA-Q3-uPu" id="8uF-Lb-qgH"/>
                         <outlet property="vwTxtMsgContainer" destination="Sa1-xB-LMi" id="Vai-t2-d7C"/>
                     </connections>

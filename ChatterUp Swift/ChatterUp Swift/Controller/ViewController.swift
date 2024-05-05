@@ -11,6 +11,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var vwNameFormContainer: UIView!
     @IBOutlet weak var vwTxtContainer: UIView!
     @IBOutlet weak var btnJoin: UIButton!
+    @IBOutlet weak var txtUserName: UITextField!
+    
+    var userId = UUID().uuidString //create userId only once on app opening
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +22,18 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        print(userId)
     }
 
     @IBAction func joinBtnAction(_ sender: UIButton) {
-        if let chatVc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as? ChatVC {
-            self.navigationController?.pushViewController(chatVc, animated: true)
+        if txtUserName.text?.isEmpty == true {
+            showAlert(withMsg: "Please enter your name.")
+        } else {
+            if let chatVc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as? ChatVC {
+                chatVc.userName = txtUserName.text ?? "Unknown"
+                chatVc.userId = userId
+                self.navigationController?.pushViewController(chatVc, animated: true)
+            }
         }
     }
     

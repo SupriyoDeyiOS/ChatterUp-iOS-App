@@ -9,6 +9,7 @@ import UIKit
 
 class outgoingMsgCell: UITableViewCell {
     @IBOutlet weak var vwContainer: UIView!
+    @IBOutlet weak var lblMessage: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
