@@ -15,12 +15,15 @@ class outgoingMsgCell: UITableViewCell {
     @IBOutlet weak var constImgWidth: NSLayoutConstraint!
     @IBOutlet weak var vwImgContainer: UIView!
     
+    var longPressGesture = CustomLongPressGestureRecognizer()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         img.layer.cornerRadius = 5
         
         vwContainer.layer.cornerRadius = 20
         vwContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

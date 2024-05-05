@@ -161,6 +161,27 @@ extension ChatVC {
         }
     }
     
+    func sendDeleteMessage(msgOfIndex: Int) {
+        let dataToSend = MessageResponseModel(action: "delete", data: MessageDataModel(sender: nil, senderId: nil, id: nil, message: nil, image: nil, deleteId: messages[msgOfIndex].id))
+        do {
+            let jsonEncoder = JSONEncoder()
+            let jsonData = try jsonEncoder.encode(dataToSend)
+            
+            let message = URLSessionWebSocketTask.Message.data(jsonData)
+            webSocketTask.send(message) { error in
+                DispatchQueue.main.async {
+                    self.messages.remove(at: msgOfIndex)
+                    self.tblMessages.reloadData()
+                }
+                if let error = error {
+                    print("WebSocket couldn't send message because: \(error)")
+                }
+            }
+        } catch {
+            print("Error encoding JSON data: \(error)")
+        }
+    }
+    
     func receiveMessage() {
         webSocketTask.receive { result in
             switch result {
@@ -201,8 +222,12 @@ extension ChatVC {
                     }
                 }
             } else if decodedData.action == "delete" {
-                //TODO: -
-                //implement delete message
+                if let deleteIndex = self.messages.firstIndex(where: {$0.id == decodedData.data?.deleteId}) {
+                    DispatchQueue.main.async {
+                        self.messages.remove(at: deleteIndex)
+                        self.tblMessages.reloadData()
+                    }
+                }
             }
         } catch {
             print("Error decoding JSON: \(error)")
@@ -233,6 +258,34 @@ extension ChatVC {
         }
     }
 
+    @objc private func handleLongPress(_ gestureRecognizer: CustomLongPressGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            actionSheet.addAction(UIAlertAction(title: "Copy Message", style: .default, handler: { _ in
+                UIPasteboard.general.string = self.messages[gestureRecognizer.rowNumber].message ?? ""
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "Delete from me", style: .destructive, handler: { _ in
+                self.messages.remove(at: gestureRecognizer.rowNumber)
+                self.tblMessages.reloadData()
+            }))
+            
+            if messages[gestureRecognizer.rowNumber].senderId == self.userId {
+                actionSheet.addAction(UIAlertAction(title: "Delete from everyone", style: .destructive, handler: { _ in
+                    self.sendDeleteMessage(msgOfIndex: gestureRecognizer.rowNumber)
+                }))
+            }
+            
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+            actionSheet.popoverPresentationController?.sourceView = gestureRecognizer.view
+            actionSheet.popoverPresentationController?.sourceRect = gestureRecognizer.view?.bounds ?? CGRect(x: 100, y: 100, width: 10, height: 10)
+            actionSheet.view.tintColor = UIColor.accent
+            
+            self.present(actionSheet, animated: true)
+        }
+    }
 }
 
 //MARK: - websocket delegates
@@ -276,6 +329,9 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
         if messages[indexPath.row].senderId == userId {
             //outgoing message
             if let cell = tableView.dequeueReusableCell(withIdentifier: "outgoingMsgCell", for: indexPath) as? outgoingMsgCell {
+                cell.longPressGesture.rowNumber = indexPath.row
+                cell.longPressGesture = CustomLongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+                cell.contentView.addGestureRecognizer(cell.longPressGesture)
                 cell.lblMessage.text = messages[indexPath.row].message ?? ""
                 if let imageBaseStr = messages[indexPath.row].image, let imgData = Data(base64Encoded: imageBaseStr), let image = UIImage(data: imgData) {
                     cell.setImage(with: image)
@@ -287,6 +343,9 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             //incoming message
             if let cell = tableView.dequeueReusableCell(withIdentifier: "IncomingMsgCell", for: indexPath) as? IncomingMsgCell {
+                cell.longPressGesture.rowNumber = indexPath.row
+                cell.longPressGesture = CustomLongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+                cell.contentView.addGestureRecognizer(cell.longPressGesture)
                 cell.lblMessage.text = messages[indexPath.row].message ?? ""
                 cell.lblSender.text = "~ \(messages[indexPath.row].sender ?? "Unknown")"
                 if let imageBaseStr = messages[indexPath.row].image, let imgData = Data(base64Encoded: imageBaseStr), let image = UIImage(data: imgData) {

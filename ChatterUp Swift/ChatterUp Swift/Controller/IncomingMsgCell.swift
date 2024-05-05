@@ -16,6 +16,8 @@ class IncomingMsgCell: UITableViewCell {
     @IBOutlet weak var constImgWidth: NSLayoutConstraint!
     @IBOutlet weak var vwImgContainer: UIView!
     
+    var longPressGesture = CustomLongPressGestureRecognizer()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         img.layer.cornerRadius = 5

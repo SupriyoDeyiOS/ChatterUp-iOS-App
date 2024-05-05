@@ -22,6 +22,7 @@
 		085199752BE7551300BD1F92 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085199742BE7551300BD1F92 /* UIViewController+Alert.swift */; };
 		085199772BE7562300BD1F92 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085199762BE7562300BD1F92 /* MessageModel.swift */; };
 		0899CF312BE7AFA500A1CFDE /* UIViewController+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899CF302BE7AFA500A1CFDE /* UIViewController+Loader.swift */; };
+		08B6B8F42BE7CB44004083C9 /* CustomLongPressGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B6B8F32BE7CB44004083C9 /* CustomLongPressGestureRecognizer.swift */; };
 		08FF47CF2BDEA5E700B6DBFB /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF47CE2BDEA5E700B6DBFB /* ChatVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		085199742BE7551300BD1F92 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		085199762BE7562300BD1F92 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		0899CF302BE7AFA500A1CFDE /* UIViewController+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loader.swift"; sourceTree = "<group>"; };
+		08B6B8F32BE7CB44004083C9 /* CustomLongPressGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLongPressGestureRecognizer.swift; sourceTree = "<group>"; };
 		08FF47CE2BDEA5E700B6DBFB /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,7 +87,6 @@
 				0825D8E52BDE9B7B00F6EFB8 /* Controller */,
 				0825D8E62BDE9B9100F6EFB8 /* Fonts */,
 				0825D8D92BDE94FB00F6EFB8 /* Assets.xcassets */,
-				0825D8DB2BDE94FB00F6EFB8 /* LaunchScreen.storyboard */,
 				0825D8DE2BDE94FB00F6EFB8 /* Info.plist */,
 				0825D8D62BDE94FA00F6EFB8 /* ChatterUp_Swift.xcdatamodeld */,
 			);
@@ -95,6 +96,7 @@
 		0825D8E42BDE9B6F00F6EFB8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0825D8DB2BDE94FB00F6EFB8 /* LaunchScreen.storyboard */,
 				0825D8D32BDE94FA00F6EFB8 /* Main.storyboard */,
 			);
 			path = View;
@@ -107,6 +109,7 @@
 				08FF47CE2BDEA5E700B6DBFB /* ChatVC.swift */,
 				081A8D452BE2186000DDC145 /* IncomingMsgCell.swift */,
 				081A8D472BE2187200DDC145 /* outgoingMsgCell.swift */,
+				08B6B8F32BE7CB44004083C9 /* CustomLongPressGestureRecognizer.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				081A8D462BE2186000DDC145 /* IncomingMsgCell.swift in Sources */,
 				085199772BE7562300BD1F92 /* MessageModel.swift in Sources */,
 				085199752BE7551300BD1F92 /* UIViewController+Alert.swift in Sources */,
+				08B6B8F42BE7CB44004083C9 /* CustomLongPressGestureRecognizer.swift in Sources */,
 				0899CF312BE7AFA500A1CFDE /* UIViewController+Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
