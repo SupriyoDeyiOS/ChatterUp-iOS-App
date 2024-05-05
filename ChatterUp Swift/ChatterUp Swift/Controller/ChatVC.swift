@@ -80,7 +80,7 @@ class ChatVC: UIViewController {
         
         actionSheet.popoverPresentationController?.sourceView = sender
         actionSheet.popoverPresentationController?.sourceRect = sender.bounds
-        
+        actionSheet.view.tintColor = UIColor.accent
         present(actionSheet, animated: true, completion: nil)
     }
     @IBAction func removePickedImgBtnAction(_ sender: UIButton) {
@@ -169,51 +169,13 @@ extension ChatVC {
                 case .string(let text):
                     print("Received message: \(text)")
                     if let jsonData = text.data(using: .utf8) {
-                        do {
-                            let decodedData = try JSONDecoder().decode(MessageResponseModel.self, from: jsonData)
-                            print("Decoded message: \(decodedData)")
-                            if decodedData.action == "message" {
-                                if let msgData = decodedData.data {
-                                    DispatchQueue.main.async {
-                                        self.messages.append(msgData)
-                                        self.tblMessages.reloadData()
-                                        // Scroll to the bottom
-                                        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-                                        self.tblMessages.scrollToRow(at: indexPath, at: .bottom, animated: true)
-                                    }
-                                }
-                            } else if decodedData.action == "delete" {
-                                //TODO: -
-                                //implement delete message
-                            }
-                        } catch {
-                            print("Error decoding JSON: \(error)")
-                        }
+                        self.showReceivedMessage(jsonData: jsonData)
                     } else {
                         print("Failed to convert received message to data")
                     }
                 case .data(let data):
                     print("Received data: \(data)")
-                    do {
-                        let decodedData = try JSONDecoder().decode(MessageResponseModel.self, from: data)
-                        print("Decoded message: \(decodedData)")
-                        if decodedData.action == "message" {
-                            if let msgData = decodedData.data {
-                                DispatchQueue.main.async {
-                                    self.messages.append(msgData)
-                                    self.tblMessages.reloadData()
-                                    // Scroll to the bottom
-                                    let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-                                    self.tblMessages.scrollToRow(at: indexPath, at: .bottom, animated: true)
-                                }
-                            }
-                        } else if decodedData.action == "delete" {
-                            //TODO: -
-                            //implement delete message
-                        }
-                    } catch {
-                        print("Error decoding JSON: \(error)")
-                    }
+                    self.showReceivedMessage(jsonData: data)
                 @unknown default:
                     print("Received unknown message")
                 }
@@ -221,6 +183,29 @@ extension ChatVC {
             case .failure(let error):
                 print("WebSocket couldn't receive message because: \(error)")
             }
+        }
+    }
+    
+    func showReceivedMessage(jsonData: Data) {
+        do {
+            let decodedData = try JSONDecoder().decode(MessageResponseModel.self, from: jsonData)
+            print("Decoded message: \(decodedData)")
+            if decodedData.action == "message" {
+                if let msgData = decodedData.data {
+                    DispatchQueue.main.async {
+                        self.messages.append(msgData)
+                        self.tblMessages.reloadData()
+                        // Scroll to the bottom
+                        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                        self.tblMessages.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                    }
+                }
+            } else if decodedData.action == "delete" {
+                //TODO: -
+                //implement delete message
+            }
+        } catch {
+            print("Error decoding JSON: \(error)")
         }
     }
     
