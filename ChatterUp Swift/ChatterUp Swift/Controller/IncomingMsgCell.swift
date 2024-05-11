@@ -29,6 +29,10 @@ class IncomingMsgCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func addLongPress() {
+        contentView.addGestureRecognizer(longPressGesture)
+    }
+    
     func setImage(with image: UIImage?) {
         if let image = image {
             vwImgContainer.isHidden = false

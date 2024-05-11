@@ -20,7 +20,7 @@ class ChatVC: UIViewController {
     
     private var webServerLiveUrl = "wss://techknowgraphy-chatterup.onrender.com/"
     private var webServiceLocalUrl = "ws://localhost:8080/"
-    lazy private var baseUrl = webServerLiveUrl  //change url here
+    lazy private var baseUrl = webServiceLocalUrl  //change url here
     
     var userName: String = ""
     var userId: String = ""
@@ -329,9 +329,9 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
         if messages[indexPath.row].senderId == userId {
             //outgoing message
             if let cell = tableView.dequeueReusableCell(withIdentifier: "outgoingMsgCell", for: indexPath) as? outgoingMsgCell {
-                cell.longPressGesture.rowNumber = indexPath.row
                 cell.longPressGesture = CustomLongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-                cell.contentView.addGestureRecognizer(cell.longPressGesture)
+                cell.longPressGesture.rowNumber = indexPath.row
+                cell.addLongPress()
                 cell.lblMessage.text = messages[indexPath.row].message ?? ""
                 if let imageBaseStr = messages[indexPath.row].image, let imgData = Data(base64Encoded: imageBaseStr), let image = UIImage(data: imgData) {
                     cell.setImage(with: image)
@@ -343,9 +343,9 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             //incoming message
             if let cell = tableView.dequeueReusableCell(withIdentifier: "IncomingMsgCell", for: indexPath) as? IncomingMsgCell {
-                cell.longPressGesture.rowNumber = indexPath.row
                 cell.longPressGesture = CustomLongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-                cell.contentView.addGestureRecognizer(cell.longPressGesture)
+                cell.longPressGesture.rowNumber = indexPath.row
+                cell.addLongPress()
                 cell.lblMessage.text = messages[indexPath.row].message ?? ""
                 cell.lblSender.text = "~ \(messages[indexPath.row].sender ?? "Unknown")"
                 if let imageBaseStr = messages[indexPath.row].image, let imgData = Data(base64Encoded: imageBaseStr), let image = UIImage(data: imgData) {
